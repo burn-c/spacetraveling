@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Post from '../components/Post';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -24,9 +25,55 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home() {
+  return (
+    <div className={styles.postsContainer}>
+      <section>
+        <Post
+          title="Como utilizar Hooks"
+          description="Pensando em sincronização em vez de ciclos de vida."
+          date="19 Abr 2021"
+          author="Joseph Oliveira"
+        />
+
+        <Post
+          title="Como utilizar Hooks"
+          description="Pensando em sincronização em vez de ciclos de vida."
+          date="19 Abr 2021"
+          author="Joseph Oliveira"
+        />
+
+        <Post
+          title="Como utilizar Hooks"
+          description="Pensando em sincronização em vez de ciclos de vida."
+          date="19 Abr 2021"
+          author="Joseph Oliveira"
+        />
+
+        <Post
+          title="Como utilizar Hooks"
+          description="Pensando em sincronização em vez de ciclos de vida."
+          date="19 Abr 2021"
+          author="Joseph Oliveira"
+        />
+
+        <Post
+          title="Como utilizar Hooks"
+          description="Pensando em sincronização em vez de ciclos de vida."
+          date="19 Abr 2021"
+          author="Joseph Oliveira"
+        />
+
+        <Post
+          title="Como utilizar Hooks"
+          description="Pensando em sincronização em vez de ciclos de vida."
+          date="19 Abr 2021"
+          author="Joseph Oliveira"
+        />
+      </section>
+    </div>
+  );
+}
 
 // export const getStaticProps = async () => {
 //   // const prismic = getPrismicClient({});

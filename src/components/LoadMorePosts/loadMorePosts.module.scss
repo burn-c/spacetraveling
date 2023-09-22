@@ -1,0 +1,18 @@
+.buttonLoadMorePosts {
+  color: var(--highlight);
+  text-align: justify;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  background-color: transparent;
+  border: transparent;
+
+  transition-duration: 0.4s;
+}
+
+.buttonLoadMorePosts:hover {
+  color: darkmagenta;
+}

@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import LoadMorePosts from '../components/LoadMorePosts';
 import Post from '../components/Post';
 
 import { getPrismicClient } from '../services/prismic';
@@ -70,6 +71,8 @@ export default function Home() {
           date="19 Abr 2021"
           author="Joseph Oliveira"
         />
+
+        <LoadMorePosts />
       </section>
     </div>
   );

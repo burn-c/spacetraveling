@@ -1,10 +1,7 @@
-import { GetStaticProps } from 'next';
 import LoadMorePosts from '../components/LoadMorePosts';
 import Post from '../components/Post';
+import { createClient } from '../prismicio';
 
-import { getPrismicClient } from '../services/prismic';
-
-import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 
 interface Post {
@@ -26,51 +23,21 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home() {
+export default function Home({ posts }) {
+  console.log(posts);
+
   return (
     <div className={styles.postsContainer}>
       <section>
-        <Post
-          title="Como utilizar Hooks"
-          description="Pensando em sincronização em vez de ciclos de vida."
-          date="19 Abr 2021"
-          author="Joseph Oliveira"
-        />
-
-        <Post
-          title="Como utilizar Hooks"
-          description="Pensando em sincronização em vez de ciclos de vida."
-          date="19 Abr 2021"
-          author="Joseph Oliveira"
-        />
-
-        <Post
-          title="Como utilizar Hooks"
-          description="Pensando em sincronização em vez de ciclos de vida."
-          date="19 Abr 2021"
-          author="Joseph Oliveira"
-        />
-
-        <Post
-          title="Como utilizar Hooks"
-          description="Pensando em sincronização em vez de ciclos de vida."
-          date="19 Abr 2021"
-          author="Joseph Oliveira"
-        />
-
-        <Post
-          title="Como utilizar Hooks"
-          description="Pensando em sincronização em vez de ciclos de vida."
-          date="19 Abr 2021"
-          author="Joseph Oliveira"
-        />
-
-        <Post
-          title="Como utilizar Hooks"
-          description="Pensando em sincronização em vez de ciclos de vida."
-          date="19 Abr 2021"
-          author="Joseph Oliveira"
-        />
+        {posts?.map(post => (
+          <Post
+            title={post?.data?.title}
+            subtitle={post?.data?.subtitle}
+            author={post?.data?.author}
+            date={post?.first_publication_date}
+            slug={post?.uid}
+          />
+        ))}
 
         <LoadMorePosts />
       </section>
@@ -78,9 +45,12 @@ export default function Home() {
   );
 }
 
-// export const getStaticProps = async () => {
-//   // const prismic = getPrismicClient({});
-//   // const postsResponse = await prismic.getByType(TODO);
+export async function getStaticProps({ params, previewData }) {
+  const client = createClient({ previewData });
 
-//   // TODO
-// };
+  const posts = await client.getAllByType('posts');
+
+  return {
+    props: { posts },
+  };
+}
